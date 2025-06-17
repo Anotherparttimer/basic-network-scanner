@@ -2,18 +2,29 @@ import subprocess
 import socket
 
 
-print("hello")
-
-result = subprocess.run(["ls", "-l"], capture_output=True, text=True)
+result = subprocess.run(["ls", "-l"], capture_output=True, text=True, shell=True)
 print(result.stdout)
+check = True
 
-for ping in range (1,10):
-    address = "127.0.0." + str(ping)
-    res = subprocess.call(['ping','-n','3', address])
-    if res == 0 :
-        print("ping to ", address,"OK")
-    elif res == 2:
-        print("no response from", address)
+
+type = input("enter 'tracert' or 'ping'")
+# make a sep path for "tracert" feature 
+address= input("enter an IP address: ")
+print("select a flag t , c , n ")
+flag = input("enter a choice: ")
+
+while(check==True):
+    if address == "null" and check==True:
+         print("enter number")
     else:
-        print("ping to ",address,"failed ")
 
+       
+        res = subprocess.call([type,'-'+flag,'5', address], shell=True)
+        if res == 0 :
+            print("ping to ", address,"OK")
+        elif res == 2:
+            print("no response from", address)
+        else:
+            print("ping to ",address,"failed ")
+    
+    check= False
