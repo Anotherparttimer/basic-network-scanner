@@ -5,10 +5,8 @@ print(result.stdout)
 check = True
 
 
-type = input("enter 'tracert' or 'ping'")
-# make a sep path for "tracert" feature 
 address= input("enter an IP address: ")
-print("select a flag t , c , n ")
+print("select a flag  c , n ")
 flag = input("enter a choice: ")
 
 while(check==True):
@@ -17,7 +15,7 @@ while(check==True):
     else:
 
        
-        res = subprocess.call([type,'-'+flag,'5', address], shell=True)
+        res = subprocess.call(["ping",'-'+flag,'5', address], shell=True)
         if res == 0 :
             print("ping to ", address,"OK")
         elif res == 2:
